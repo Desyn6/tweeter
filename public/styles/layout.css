@@ -15,7 +15,7 @@ html {
  */
 
 body {
-  color: #ffffff;
+  color: #545149;
   font-family: "Source Sans Pro", sans-serif;
   background-color: #f4f1ec;
   font-size: 24px;
@@ -27,4 +27,14 @@ body {
 
 .bold {
   font-weight: 600;
+}
+
+main {
+  max-width: 100%;
+  margin-left: 5%;
+  margin-right: 5%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
