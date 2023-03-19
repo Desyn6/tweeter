@@ -1,0 +1,19 @@
+header {
+  margin-top: 120px;
+  height: 400px;
+  width: 100vw;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  background-image: url('/images/background-fabric-plaid.png');
+  background-repeat: repeat-x repeat-y;
+  background-color: #6470a1;
+}
+
+.username {
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
