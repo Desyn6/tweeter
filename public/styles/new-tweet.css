@@ -1,0 +1,47 @@
+.new-tweet {
+  border-style: solid;
+
+  width: 100%;
+  padding: 30px 30px;
+
+  font-weight: 600;
+}
+
+button {
+  background-color: #4056A1;
+  font-family: bungee;
+  color: #ffffff;
+  padding: 6px;
+  border: 0px;
+}
+
+.counter {
+  font-family: bungee;
+  float: right;
+}
+
+/* Tweet input text box */
+#tweet-text {
+  width: 100%;
+
+  /* Replace default border with bottom border */
+  border-style: none;
+  outline: none;
+  border-bottom: solid 5px;
+  border-color: #545149;
+
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+  font-family: "Source Sans Pro";
+  font-weight: 600;
+
+  /* Remove resize handle */
+  resize: none;
+  background-color: #f4f1ec;
+
+  /* font settings */
+  font-weight: 400;
+  font-size: 22px;
+  color: #545149;
+}

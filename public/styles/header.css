@@ -11,6 +11,8 @@ header {
   background-image: url('/images/background-fabric-plaid.png');
   background-repeat: repeat-x repeat-y;
   background-color: #6470a1;
+
+  margin-bottom: 60px;
 }
 
 .header-username {
