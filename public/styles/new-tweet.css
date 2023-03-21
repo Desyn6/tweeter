@@ -24,10 +24,10 @@ button {
 #tweet-text {
   width: 100%;
 
-  /* Replace default border with bottom border */
+  /* Default border -> bottom-only border */
   border-style: none;
   outline: none;
-  border-bottom: solid 5px;
+  border-bottom: solid 3px;
   border-color: #545149;
 
   margin-top: 10px;

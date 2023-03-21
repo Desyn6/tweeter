@@ -24,6 +24,8 @@ body {
 /*
  * Additional CSS can be defined below or in other CSS files, as per instructions
  */
+
+ /* font classes */
 .red {
   color: red;
 }
@@ -40,3 +42,59 @@ main {
   flex-direction: column;
   justify-content: flex-start;
 }
+
+/* Tweet body styling */
+article.tweet {
+  margin-top: 50px;
+
+  padding: 20px;
+
+  border-style: solid;
+
+  display: flex;
+  flex-direction: column;
+  
+  background: #f4f1ec;
+}
+
+article.tweet header {
+  padding-left: 10px;
+  padding-right: 10px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 15px;
+}
+
+article.tweet div.handle {
+  margin-left: auto;
+}
+
+article.tweet .text {
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 30px;
+
+  border-bottom: solid 3px;
+  border-color: #545149;
+}
+
+article.tweet footer {
+  padding-left: 2%;
+  padding-right: 2%;
+
+  display: flex;
+  flex-direction: row;
+
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+article.tweet .date {
+  margin-right: auto;
+}
+
+/*  */
