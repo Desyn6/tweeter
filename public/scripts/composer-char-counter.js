@@ -7,13 +7,13 @@ $(document).ready(function() {
     const charLeft = charLimit - $(this).val().length;
 
     // Up to parent, down to 'div' > 'output'
-    const charCount = $(this).parent().children('div').children('output');
+    const $charCount = $(this).parent().children('div').children('output');
 
     // write remaining char count to counter
-    charCount.val(charLeft);
+    $charCount.val(charLeft);
 
     // set/remove color class for counter
-    (charLeft < 0 ? charCount.addClass("red") : charCount.removeClass("red"));
+    (charLeft < 0 ? $charCount.addClass("red") : $charCount.removeClass("red"));
   })
 });
 
