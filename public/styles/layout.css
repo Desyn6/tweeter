@@ -43,7 +43,9 @@ main {
   justify-content: flex-start;
 }
 
-/* Tweet body styling */
+/* 
+/* Tweet body styling
+*/
 article.tweet {
   margin-top: 50px;
 
@@ -97,4 +99,14 @@ article.tweet .date {
   margin-right: auto;
 }
 
-/*  */
+/* 
+/* Hover styling
+*/
+
+article.tweet:hover { box-shadow: 5px 10px #6470a1 }
+
+.fa-flag:hover { color: #800000 }
+
+.fa-retweet:hover { color: #00cc00 }
+
+.fa-heart:hover { color: #ff0066 }
