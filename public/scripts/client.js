@@ -50,13 +50,22 @@ $(document).ready(function() {
 
   /* logic for POSTING new tweets */
   $('#tweet-form').submit(function(event) {
-    const $data = $(this).serialize();
     event.preventDefault();
+    const $twtText = $(this).children('textarea').val()
+    
+    // catch empty tweets
+    if (!$twtText) {return alert('You have not written anything!')};
+
+    if ($twtText.length > 140) {
+      return alert(`Your tweet is ${$twtText.length - 140} characters too long! :(`)
+    };
+
+    const $data = $(this).serialize();
 
     // posts data and clears field upon success
     $.ajax({
       type: 'POST',
-      url: 'http://localhost:8080/tweets/',
+      url: '/tweets/',
       data: $data,
     })
       .done(() => $(this).children('textarea').val(''))
@@ -64,5 +73,5 @@ $(document).ready(function() {
   });
 
   /* logic for GETTING saved tweets */
-  $.get('http://localhost:8080/tweets/', (data) => renderTweets(data));
+  $.get('/tweets/', (data) => renderTweets(data));
 });
