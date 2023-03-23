@@ -4,44 +4,6 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
 
-/* Temporary hard-coded tweet data for accessing dynamically*/
-const data = [
-  {
-    "user": {
-      "name": "Rick",
-      "avatars": "https://i.imgur.com/73hZDYK.png"
-      ,
-      "handle": "@theAstley"
-    },
-    "content": {
-      "text": "Never gonna give you up."
-    },
-    "created_at": 1461116232227
-  },
-  {
-    "user": {
-      "name": "Ricky",
-      "avatars": "https://i.imgur.com/nlhLi3I.png",
-      "handle": "@theAster" },
-    "content": {
-      "text": "Never gonna let you down."
-    },
-    "created_at": 1461113959088
-  },
-  {
-    "user": {
-      "name": "Richtly",
-      "avatars": "https://i.imgur.com/73hZDYK.png"
-      ,
-      "handle": "@Asterley"
-    },
-    "content": {
-      "text": "Never gonna run around and desert you."
-    },
-    "created_at": 1461116232227
-  }
-];
-
 /** This function will generate a tweet article element
  *  using a standard tweet-data object.
  *
@@ -81,11 +43,12 @@ const renderTweets = (tweets) => {
 };
 
 
+////////////////////////////
+// DOM MANIPULATION CALLS //
+////////////////////////////
 $(document).ready(function() {
-  /* Call renderTweets on tweet data object*/  
-  renderTweets(data);
 
-  /* logic for handling new tweets */
+  /* logic for POSTING new tweets */
   $('#tweet-form').submit(function(event) {
     const $data = $(this).serialize();
     event.preventDefault();
@@ -95,7 +58,11 @@ $(document).ready(function() {
       type: 'POST',
       url: 'http://localhost:8080/tweets/',
       data: $data,
-      success: () => {$(this).children('textarea').val('')}
     })
+      .done(() => $(this).children('textarea').val(''))
+      .fail(() => alert("Failed to send tweet!"))
   });
+
+  /* logic for GETTING saved tweets */
+  $.get('http://localhost:8080/tweets/', (data) => renderTweets(data));
 });
