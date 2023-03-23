@@ -80,7 +80,22 @@ const renderTweets = (tweets) => {
   }
 };
 
-/* Call renderTweets on tweet data object*/
+
 $(document).ready(function() {
+  /* Call renderTweets on tweet data object*/  
   renderTweets(data);
+
+  /* logic for handling new tweets */
+  $('#tweet-form').submit(function(event) {
+    const $data = $(this).serialize();
+    event.preventDefault();
+
+    // posts data and clears field upon success
+    $.ajax({
+      type: 'POST',
+      url: 'http://localhost:8080/tweets/',
+      data: $data,
+      success: () => {$(this).children('textarea').val('')}
+    })
+  });
 });
