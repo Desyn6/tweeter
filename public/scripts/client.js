@@ -15,10 +15,10 @@ const createTweetElement = (tweet) => {
   <article class="tweet">
     <header>
       <img src="${tweet.user.avatars}" alt="User icon">
-      <div>${tweet.user.name}</div>
-      <div class="handle">${tweet.user.handle}</div>
+      <div>${textifyCode(tweet.user.name)}</div>
+      <div class="handle">${textifyCode(tweet.user.handle)}</div>
     </header>
-    <p class="text">${tweet.content.text}</p>
+    <p class="text">${textifyCode(tweet.content.text)}</p>
     <footer>
       <div class="date"> ${timeago.format(tweet.created_at)}</div>
       <i class="fa-solid fa-flag"></i>
@@ -49,6 +49,14 @@ const loadTweets = () => {
     $('.counter').val(140);
     renderTweets(data);
   })
+};
+
+/** This function nullifies XSS
+ */
+const textifyCode = function(str) {
+  let div = document.createElement("div");
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
 };
 
 ////////////////////////////
