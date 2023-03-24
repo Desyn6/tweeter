@@ -2,7 +2,7 @@ $(document).ready(function() {
   // --- our code goes here ---
   const charLimit = 140;
 
-  $("#tweet-text").on("input", function() {
+  $("#tweet-input").on("input", function() {
     // calc charleft from length of string @ tweet-text
     const charLeft = charLimit - $(this).val().length;
 

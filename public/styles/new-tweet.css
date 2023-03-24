@@ -21,7 +21,7 @@ button {
 }
 
 /* Tweet input text box */
-#tweet-text {
+#tweet-input {
   width: 100%;
 
   /* Default border -> bottom-only border */
