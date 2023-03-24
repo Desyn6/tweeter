@@ -11,7 +11,7 @@
  * @returns "tweet article element"
  */
 const createTweetElement = (tweet) => {
-  const $tweet = $(`
+  return $(`
   <article class="tweet">
     <header>
       <img src="${tweet.user.avatars}" alt="User icon">
@@ -26,8 +26,6 @@ const createTweetElement = (tweet) => {
       <i class="fa-solid fa-heart"></i>
     </footer>
   </article>`);
-
-  return $tweet;
 };
 
 /** This function accepts an array of tweet-data objects,
@@ -37,11 +35,21 @@ const createTweetElement = (tweet) => {
  * @param {*} "array of tweet-data objects"
  */
 const renderTweets = (tweets) => {
+  $('.tweets-container').empty();
   for (const tweet of tweets) {
     $('.tweets-container').prepend(createTweetElement(tweet));
   }
 };
 
+/* logic for GETTING saved tweets */
+const loadTweets = () => {
+  $.get('./tweets/', (data) => {
+    // clear tweet input form & reset counter
+    $('#tweet-input').val('');
+    $('.counter').val(140);
+    renderTweets(data);
+  })
+};
 
 ////////////////////////////
 // DOM MANIPULATION CALLS //
@@ -57,21 +65,16 @@ $(document).ready(function() {
     if (!$twtText) {return alert('You have not written anything!')};
 
     if ($twtText.length > 140) {
-      return alert(`Your tweet is ${$twtText.length - 140} characters too long! :(`)
+      return alert(`Your tweet is ${$twtText.length - 140} characters too long!`);
     };
 
     const $data = $(this).serialize();
 
-    // posts data and clears field upon success
-    $.ajax({
-      type: 'POST',
-      url: '/tweets/',
-      data: $data,
-    })
-      .done(() => $(this).children('textarea').val(''))
+    // posts data and reload tweets
+    $.post('./tweets/', $data)
+      .then(loadTweets)
       .fail(() => alert("Failed to send tweet!"))
   });
 
-  /* logic for GETTING saved tweets */
-  $.get('/tweets/', (data) => renderTweets(data));
+  loadTweets();
 });
