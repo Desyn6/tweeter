@@ -1,6 +1,4 @@
 .new-tweet {
-  border-style: solid;
-
   width: 100%;
   padding: 30px 30px;
 
@@ -44,4 +42,18 @@ button {
   font-weight: 400;
   font-size: 22px;
   color: #545149;
+}
+
+/*
+ * Error Message Styling
+*/
+.errormessage {
+  width: 100%;  
+  
+  text-align: center;
+
+  border: solid 2px red;
+  color: red;
+  
+  margin-bottom: 30px;
 }
