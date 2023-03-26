@@ -28,10 +28,10 @@ const createTweetElement = (tweet) => {
   </article>`);
 };
 
-/** This function accepts an array of tweet-data objects,
- *  calls createTweetElement on each tweet-data object,
- *  then appends the tweet article to the index.html container.
- *
+/** Accepts an array of tweet-data objects.
+ *  Pushes dynamically generated tweet article elements
+ *  to '.tweets-container'. 
+ * 
  * @param {*} "array of tweet-data objects"
  */
 const renderTweets = (tweets) => {
@@ -41,23 +41,67 @@ const renderTweets = (tweets) => {
   }
 };
 
-/* logic for GETTING saved tweets */
+/** Fetches tweet data from /tweets with a GET request.
+ *  Clears tweet-input form and resets counter.
+ *  Calls renderTweets with input to render tweets.
+ */
 const loadTweets = () => {
   $.get('./tweets/', (data) => {
     // clear tweet input form & reset counter
     $('#tweet-input').val('');
     $('.counter').val(140);
+
     renderTweets(data);
   })
 };
 
-/** This function nullifies XSS
+/**
+ * Nullifies XSS code.
+ * 
+ * Examples:
+ *  
+ *  \`String literal with text input: ${textifyCode(inputString)}\`
  */
-const textifyCode = function(str) {
+const textifyCode = (str) => {
   let div = document.createElement("div");
   div.appendChild(document.createTextNode(str));
   return div.innerHTML;
 };
+
+/** Error message helper function to toggle error
+ *  message display in new-tweet element
+ *
+ *  Examples:
+ *  
+ *  clear error message: `$toggleErrorMsg()`
+ * 
+ *  write error message (string): `$toggleErrorMsg(str)`
+ */
+const $toggleErrorMsg = (message) => {
+  const $err = $('.errormessage');
+  // Always slide up first
+  $err.slideUp();
+  // Only slide down 
+  if (message) $err.html(message).slideDown();
+};
+
+/** Checks tweet length. 
+ *  Will toggle error message if tweet is too short (length = 0),
+ *  or too long (length > 140). 
+ *
+ *  Returns true such that tweet can be posted later tweet is 
+ *  between 1 and 140 chars.
+ */
+const checkTweetLength = (message) => {
+  if (!message) {
+    $toggleErrorMsg("⚠️Empty tweets are for MUMBLERS.⚠️");
+  } else if (message.length > 140) {
+    $toggleErrorMsg('⚠️Tweets longer than 140 chars are for RAMBLERS.⚠️');
+  } else {
+    $toggleErrorMsg();
+    return true;
+  }
+}
 
 ////////////////////////////
 // DOM MANIPULATION CALLS //
@@ -68,20 +112,17 @@ $(document).ready(function() {
   $('#tweet-form').submit(function(event) {
     event.preventDefault();
     const $twtText = $(this).children('textarea').val()
-    
-    // catch empty tweets
-    if (!$twtText) {return alert('You have not written anything!')};
 
-    if ($twtText.length > 140) {
-      return alert(`Your tweet is ${$twtText.length - 140} characters too long!`);
+    // check tweet length and proceed only if 0 < length <= 140 chars
+    if (checkTweetLength($twtText)) {
+      const $data = $(this).serialize();
+
+      // posts data and reload tweets
+      $.post('./tweets/', $data)
+        .then(loadTweets)
+        .fail(() => $toggleErrorMsg("Okay, that one was our fault. Maybe."))
     };
 
-    const $data = $(this).serialize();
-
-    // posts data and reload tweets
-    $.post('./tweets/', $data)
-      .then(loadTweets)
-      .fail(() => alert("Failed to send tweet!"))
   });
 
   loadTweets();
