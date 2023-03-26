@@ -43,9 +43,9 @@
     <!-- Top nav bar (fixed) -->
     <nav>
       <div><span id="logo">tweeter</span></div>
-      <div><span class="bold">Write</span> a new tweet
+      <div class="new-tweet-toggle clickable"><span class="bold">Write</span> a new tweet
         <br>
-        <i class="fa-solid fa-angles-down red"></i>
+        <i class="fa-solid fa-angles-down red bounce"></i>
       </div>
     </nav>
 
@@ -73,7 +73,7 @@
             name="text" 
             id="tweet-input"></textarea>
           <div>
-            <button type="submit" class="i">Tweet</button>
+            <button type="submit" class="clickable">Tweet</button>
             <output name="counter" class="counter" for="tweet-text">140</output>
           </div>
         </form>

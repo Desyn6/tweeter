@@ -40,7 +40,7 @@ main {
 }
 
 /* 
-/* Tweet body styling
+ * Tweet body styling
 */
 article.tweet {
   margin-top: 50px;
@@ -95,12 +95,12 @@ article.tweet .date {
 }
 
 /* 
-/* Hover styling
+ * Hover styling
 */
 
 article.tweet:hover { box-shadow: 5px 10px #6470a1 }
 
-i:hover { cursor: pointer }
+.clickable:hover { cursor: pointer }
 
 .fa-flag:hover { color: #e6c50b }
 

@@ -21,9 +21,9 @@ const createTweetElement = (tweet) => {
     <p class="text">${textifyCode(tweet.content.text)}</p>
     <footer>
       <div class="date"> ${timeago.format(tweet.created_at)}</div>
-      <i class="fa-solid fa-flag"></i>
-      <i class="fa-solid fa-retweet"></i>
-      <i class="fa-solid fa-heart"></i>
+      <i class="fa-solid fa-flag clickable"></i>
+      <i class="fa-solid fa-retweet clickable"></i>
+      <i class="fa-solid fa-heart clickable"></i>
     </footer>
   </article>`);
 };
@@ -103,6 +103,19 @@ const checkTweetLength = (message) => {
   }
 }
 
+/** Listeners for Write-new-Tweets
+ *  interactions
+ */
+const collapseInput = () => {
+  $('.new-tweet-toggle').click(() => $('.new-tweet').slideToggle())
+};
+
+const bounceIcon = () => {
+  $('.new-tweet-toggle').hover(function() {
+    $(this).children('i').toggleClass('bounce');
+  });
+};
+
 ////////////////////////////
 // DOM MANIPULATION CALLS //
 ////////////////////////////
@@ -126,4 +139,7 @@ $(document).ready(function() {
   });
 
   loadTweets();
+
+  collapseInput();
+  bounceIcon();
 });
