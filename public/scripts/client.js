@@ -107,7 +107,10 @@ const checkTweetLength = (message) => {
  *  interactions
  */
 const collapseInput = () => {
-  $('.new-tweet-toggle').click(() => $('.new-tweet').slideToggle())
+  $('.new-tweet-toggle').click(() => {
+    $('.new-tweet').slideToggle();
+    $('#tweet-input').focus();
+  })
 };
 
 const bounceIcon = () => {
