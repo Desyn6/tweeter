@@ -119,30 +119,60 @@ const bounceIcon = () => {
   });
 };
 
+/** Listeners for scroll to top icon */
+
+const showToTopBtn = () => {
+  $(window).scroll(function() {
+    if($(window).scrollTop() >= 40) {
+      $('#to-top-button').fadeIn();
+    } else {
+      $('#to-top-button').fadeOut();
+    }})
+};
+
+const scrollToTop = () => {
+  $('#to-top-button').click(() => {
+    $(window).scrollTop(0);
+    $('.new-tweet').slideDown();
+    $('#tweet-input').focus();
+  })
+};
+
+  /* logic for POSTING new tweets */
+  const postTweets = () => {
+    $('#tweet-form').submit(function(event) {
+      event.preventDefault();
+      const $twtText = $(this).children('textarea').val()
+
+      // check tweet length and proceed only if 0 < length <= 140 chars
+      if (checkTweetLength($twtText)) {
+        const $data = $(this).serialize();
+
+        // posts data and reload tweets
+        $.post('./tweets/', $data)
+          .then(loadTweets)
+          .fail(() => $toggleErrorMsg("Okay, that one was our fault. Maybe."))
+      };
+    }
+  )
+};
+
 ////////////////////////////
 // DOM MANIPULATION CALLS //
 ////////////////////////////
 $(document).ready(function() {
 
-  /* logic for POSTING new tweets */
-  $('#tweet-form').submit(function(event) {
-    event.preventDefault();
-    const $twtText = $(this).children('textarea').val()
+  // Post Tweets call
+  postTweets();
 
-    // check tweet length and proceed only if 0 < length <= 140 chars
-    if (checkTweetLength($twtText)) {
-      const $data = $(this).serialize();
-
-      // posts data and reload tweets
-      $.post('./tweets/', $data)
-        .then(loadTweets)
-        .fail(() => $toggleErrorMsg("Okay, that one was our fault. Maybe."))
-    };
-
-  });
-
+  // Default load-tweet call
   loadTweets();
 
+  // Tweet-input interface collapse/expand
   collapseInput();
   bounceIcon();
+
+  // Return to top of page button calls
+  showToTopBtn();
+  scrollToTop();
 });

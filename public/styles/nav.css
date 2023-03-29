@@ -21,6 +21,22 @@ nav {
   font-size: 36px;
 }
 
+/*
+ * Floating to-top button styling
+ */
+#to-top-button {
+  display: none;
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  
+  width: 50px;
+  height: 50px;
+  background: red;
+
+  border-radius:25px;
+}
+
 /* Bounce animation styling */
 .bounce {
   display: inline-block;
