@@ -8,12 +8,12 @@ nav {
   height: 120px;
 
   color: #FFFFFF;
-  background-color: #4056A1;
+  background: none;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
-  text-align: center
+  text-align: center;
 }
 
 #logo {

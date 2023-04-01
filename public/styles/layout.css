@@ -43,7 +43,7 @@ main {
  * Tweet body styling
 */
 article.tweet {
-  margin-top: 50px;
+  margin-top: 20px;
 
   padding: 20px;
 
@@ -107,3 +107,28 @@ article.tweet:hover { box-shadow: 5px 10px #6470a1 }
 .fa-retweet:hover { color: #00cc00 }
 
 .fa-heart:hover { color: #ff0066 }
+
+/* Responsive design settings */
+
+@media only screen and (min-width: 1024px) {
+  body {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .container { 
+    margin: 30px;
+    margin-top: 150px;
+  }
+
+  #main-header {
+    margin: 30px;
+    margin-top: 170px;
+    width: 40vw;
+  }
+
+  nav {
+    background-color: #4056A1;;
+    background-image: none;
+  }
+}

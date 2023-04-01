@@ -1,7 +1,6 @@
 body > header {
-  margin-top: 120px;
   height: 400px;
-  width: 100%;
+  width: 100vw;
 
   display: flex;
   flex-direction: column;
@@ -11,7 +10,6 @@ body > header {
   background-image: url('/images/background-fabric-plaid.png');
   background-repeat: repeat-x repeat-y;
   background-color: #6470a1;
-
 }
 
 .header-username {
